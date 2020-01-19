@@ -5,6 +5,7 @@ trigger:
     include:
     - master
     - release*
+    - wip-test-windows-python
 variables:
   ExternalDataVersion: 5.0.1
 jobs:
@@ -68,6 +69,7 @@ jobs:
         cmake --version
         call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         ctest -S $(Agent.BuildDirectory)/ITK-dashboard/dashboard.cmake -VV -j 4 -L Python
+        cat $(Agent.BuildDirectory)/s-build/CMakeCache.txt
       displayName: 'Build and test'
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
